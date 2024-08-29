@@ -3,13 +3,15 @@ export function SettingsButtons({ text, id, image }) {
     backgroundColor: "white",
     fontSize: "20px",
     borderRadius: "10%",
-    border: "none",
+    border: "1px solid rgb(235, 235, 235)",
     padding: "5px 7px",
     cursor: "pointer",
   };
 
+  // Add functionality to each button here
+
   return (
-    <button id={id} style={buttonStyle}>
+    <button className="settingButton" id={id} style={buttonStyle}>
       {image} {text}
     </button>
   );
