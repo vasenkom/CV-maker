@@ -5,17 +5,24 @@ export function SettingPart() {
   return (
     <div id="SettingPart">
       <div
+        id="SettingPartContext"
         style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "20px",
-          marginBottom: "30px",
+          margin: "20px",
         }}
       >
-        <SettingsButtons text="Content" id="ContentButton" image="#" />
-        <SettingsButtons text="Customize" id="CustomizeButton" image="#" />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "20px",
+            marginBottom: "30px",
+          }}
+        >
+          <SettingsButtons text="Content" id="ContentButton" image="#" />
+          <SettingsButtons text="Customize" id="CustomizeButton" image="#" />
+        </div>
+        <ToggleSwitch />
       </div>
-      <ToggleSwitch />
     </div>
   );
 }

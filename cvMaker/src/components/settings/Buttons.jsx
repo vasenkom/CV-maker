@@ -2,7 +2,7 @@ export function SettingsButtons({ text, id, image }) {
   const buttonStyle = {
     backgroundColor: "white",
     fontSize: "20px",
-    borderRadius: "10%",
+    borderRadius: "10px",
     border: "1px solid rgb(235, 235, 235)",
     padding: "5px 7px",
     cursor: "pointer",
