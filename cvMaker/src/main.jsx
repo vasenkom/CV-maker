@@ -6,6 +6,11 @@ import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <SettingPart />
+    <div id="Application">
+      <div id="Left">
+        <SettingPart />
+      </div>
+      <div id="Right"></div>
+    </div>
   </StrictMode>
 );

@@ -7,6 +7,20 @@
 body {
   background-color: rgb(235, 235, 235);
 }
+#Application {
+  display: flex;
+  flex-direction: row;
+}
+#Left {
+  display: flex;
+  flex-direction: column;
+  width: 30%; /* Maybe more */
+}
+#Right {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
 #SettingPart {
   margin-top: 30px;
   margin-left: 20px;
