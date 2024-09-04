@@ -8,8 +8,8 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <div id="Application">
       <div id="Left">
-        <Forms />
         <SettingPart />
+        <Forms />
       </div>
       <div id="Right"></div>
     </div>
