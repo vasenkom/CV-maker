@@ -1,22 +1,7 @@
 import { useState } from "react";
 import { PersonalForm } from "./personalForm";
 
-export function Forms() {
-  const [personalInfo, setPersonalInfo] = useState({
-    name: "",
-    surname: "",
-    phone: "",
-    address: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setPersonalInfo((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
+export function Forms({ personalInfo, handleInputChange }) {
   return (
     <div id="form">
       <p
