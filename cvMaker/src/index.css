@@ -21,11 +21,25 @@ body {
   flex-direction: column;
   width: 70%;
 }
-#SettingPart {
-  margin-top: 30px;
+#SettingPart,
+#form {
+  margin-top: 15px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
+}
+#form {
+  gap: 15px;
+}
+#personalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 15px;
+}
+input[type="text"],
+select {
+  padding: 8px 15px;
 }
