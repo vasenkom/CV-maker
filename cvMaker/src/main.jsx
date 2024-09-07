@@ -9,7 +9,6 @@ import "./index.css";
 function Application() {
   const [personalInfo, setPersonalInfo] = useState({
     name: "",
-    surname: "",
     phone: "",
     address: "",
     email: "",
