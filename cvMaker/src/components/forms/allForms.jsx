@@ -30,8 +30,8 @@ export function Forms({ personalInfo, handleInputChange }) {
         />
         <label htmlFor="phone">Phone number:</label>
         <PersonalForm
-          name="email"
-          value={personalInfo.email}
+          name="phone"
+          value={personalInfo.phone}
           onChange={handleInputChange}
         />
         <label htmlFor="address">Address:</label>
