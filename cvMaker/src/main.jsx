@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client";
 import { SettingPart } from "./components/settings/SettingsMain";
 import { Forms } from "./components/forms/allForms";
 import { CVprototype } from "./components/CV";
+import { SettingsButtons } from "./components/settings/Buttons";
 import "./index.css";
 
 function Application() {
@@ -32,8 +33,12 @@ function Application() {
         />
       </div>
       <div id="Right">
-        {" "}
-        <CVprototype personalInfo={personalInfo} />{" "}
+        <SettingsButtons
+          text="Download"
+          className="ContentButton downloadButton"
+          image="#"
+        />
+        <CVprototype personalInfo={personalInfo} />
       </div>
     </div>
   );
