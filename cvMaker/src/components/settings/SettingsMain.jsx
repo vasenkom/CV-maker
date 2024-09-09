@@ -18,8 +18,18 @@ export function SettingPart() {
             marginBottom: "30px",
           }}
         >
-          <SettingsButtons text="Content" id="ContentButton" image="#" />
-          <SettingsButtons text="Customize" id="CustomizeButton" image="#" />
+          <SettingsButtons
+            text="Content"
+            id="ContentButton"
+            className="ContentButton"
+            image="#"
+          />
+          <SettingsButtons
+            text="Customize"
+            id="CustomizeButton"
+            className="ContentButton"
+            image="#"
+          />
         </div>
         <ToggleSwitch />
       </div>
