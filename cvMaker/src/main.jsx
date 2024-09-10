@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { SettingPart } from "./components/settings/SettingsMain";
-import { Forms } from "./components/forms/allForms";
+import { PersonalForms } from "./components/forms/PersonalForms";
+import { EducationForm } from "./components/forms/EducationForm";
 import { CVprototype } from "./components/CV";
 import { SettingsButtons } from "./components/settings/Buttons";
+import { handleDownloadPDF } from "./components/downloadPDF";
 import "./index.css";
 
 function Application() {
@@ -15,9 +17,25 @@ function Application() {
     email: "",
   });
 
-  const handleInputChange = (e) => {
+  const [educationInfo, setEducationInfo] = useState({
+    school: "",
+    degree: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+  });
+
+  const handlePersonalInputChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleEducationInputChange = (e) => {
+    const { name, value } = e.target;
+    setEducationInfo((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
@@ -27,9 +45,13 @@ function Application() {
     <div id="Application">
       <div id="Left">
         <SettingPart personalInfo={personalInfo} />
-        <Forms
+        <PersonalForms
           personalInfo={personalInfo}
-          handleInputChange={handleInputChange}
+          handleInputChange={handlePersonalInputChange}
+        />
+        <EducationForm
+          educationInfo={educationInfo}
+          handleInputChange={handleEducationInputChange}
         />
       </div>
       <div id="Right">
@@ -37,8 +59,12 @@ function Application() {
           text="Download"
           className="ContentButton downloadButton"
           image="#"
+          onclick={handleDownloadPDF}
         />
-        <CVprototype personalInfo={personalInfo} />
+        <CVprototype
+          personalInfo={personalInfo}
+          educationInfo={educationInfo}
+        />
       </div>
     </div>
   );
