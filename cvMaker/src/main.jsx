@@ -17,7 +17,8 @@ function Application() {
     email: "",
   });
 
-  const [educationInfo, setEducationInfo] = useState({
+  const [educationList, setEducationList] = useState([]); // Array of education objects
+  const [currentEducation, setCurrentEducation] = useState({
     school: "",
     degree: "",
     startDate: "",
@@ -35,11 +36,58 @@ function Application() {
 
   const handleEducationInputChange = (e) => {
     const { name, value } = e.target;
-    setEducationInfo((prevFormData) => ({
+    setCurrentEducation((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
   };
+
+  const [visibleForm, setVisibleForm] = useState(false); // Control form visibility
+
+  function makeFormAppear() {
+    setVisibleForm(true);
+    setSaveFormData(true);
+  }
+
+  const [saveFormData, setSaveFormData] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
+
+  function saveEducationInfo() {
+    setSaveFormData(false);
+
+    if (editingIndex !== null) {
+      // If in edit mode, update the existing education entry
+      setEducationList((prevList) => {
+        const updatedList = [...prevList];
+        updatedList[editingIndex] = currentEducation;
+        return updatedList;
+      });
+      setEditingIndex(null); // Reset after editing
+    } else {
+      // Otherwise, add a new entry
+      setEducationList((prevList) => [...prevList, currentEducation]);
+    }
+
+    setCurrentEducation({
+      school: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+    }); // Reset form after saving
+    setVisibleForm(false); // Hide form after saving
+  }
+
+  function deleteEducationInfo(index) {
+    setEducationList((prevList) => prevList.filter((_, i) => i !== index));
+  }
+
+  function handleEdit(index) {
+    setCurrentEducation(educationList[index]);
+    setEditingIndex(index); // Set the current index being edited
+    setVisibleForm(true); // Show the form to edit
+    setSaveFormData(true);
+  }
 
   return (
     <div id="Application">
@@ -50,8 +98,14 @@ function Application() {
           handleInputChange={handlePersonalInputChange}
         />
         <EducationForm
-          educationInfo={educationInfo}
+          currentEducation={currentEducation}
+          educationList={educationList}
           handleInputChange={handleEducationInputChange}
+          visibleForm={visibleForm}
+          makeFormAppear={makeFormAppear}
+          saveEducationInfo={saveEducationInfo}
+          handleEdit={handleEdit}
+          deleteEducationInfo={deleteEducationInfo}
         />
       </div>
       <div id="Right">
@@ -59,11 +113,13 @@ function Application() {
           text="Download"
           className="ContentButton downloadButton"
           image="#"
-          onclick={handleDownloadPDF}
+          onClick={handleDownloadPDF}
         />
         <CVprototype
           personalInfo={personalInfo}
-          educationInfo={educationInfo}
+          educationList={educationList}
+          saveFormData={saveFormData}
+          currentEducation={currentEducation}
         />
       </div>
     </div>
