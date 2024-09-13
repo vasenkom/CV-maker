@@ -1,4 +1,9 @@
-export function CVprototype({ personalInfo, educationInfo }) {
+export function CVprototype({
+  personalInfo,
+  educationList,
+  saveFormData,
+  currentEducation,
+}) {
   return (
     <>
       <div id="CVprototype">
@@ -18,18 +23,41 @@ export function CVprototype({ personalInfo, educationInfo }) {
             </p>
           </div>
         </div>
+
         <div id="education">
           <h2>Education</h2>
-          <div id="column">
-            <p>
-              {educationInfo.startDate} - {educationInfo.endDate}
-            </p>
-            <p>{educationInfo.location}</p>
-          </div>
-          <div id="column">
-            <p>{educationInfo.school}</p>
-            <p>{educationInfo.degree}</p>
-          </div>
+
+          {/* Show both saved education and current form data when saveFormData is true */}
+          {saveFormData && (
+            <div className="education-entry">
+              <div id="column">
+                <p>
+                  {currentEducation.startDate} - {currentEducation.endDate}
+                </p>
+                <p>{currentEducation.location}</p>
+              </div>
+              <div id="column">
+                <p>{currentEducation.school}</p>
+                <p>{currentEducation.degree}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Always render the saved educationList */}
+          {educationList.map((edu, index) => (
+            <div key={index} className="education-entry">
+              <div id="column">
+                <p>
+                  {edu.startDate} - {edu.endDate}
+                </p>
+                <p>{edu.location}</p>
+              </div>
+              <div id="column">
+                <p>{edu.school}</p>
+                <p>{edu.degree}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
