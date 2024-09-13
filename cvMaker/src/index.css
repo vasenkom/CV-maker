@@ -32,6 +32,14 @@ body {
   background-color: white;
   border-radius: 10px;
 }
+input {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: rgb(235, 235, 235);
+}
+input:focus-visible {
+  outline-width: 0;
+}
 #form {
   gap: 15px;
 }
