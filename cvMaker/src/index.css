@@ -111,3 +111,13 @@ select {
   margin-left: 20px;
   margin-top: 15px;
 }
+.formButton {
+  margin-left: 15px;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 10px;
+  background-color: white;
+}
