@@ -110,9 +110,10 @@ function Application() {
       </div>
       <div id="Right">
         <SettingsButtons
+          id="downloadButton"
           text="Download"
           className="ContentButton downloadButton"
-          image="#"
+          image={<img src="#" alt="Download Icon" />}
           onClick={handleDownloadPDF}
         />
         <CVprototype

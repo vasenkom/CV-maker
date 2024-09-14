@@ -1,9 +1,9 @@
-import React from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { SettingsButtons } from "./settings/Buttons";
 
 export function handleDownloadPDF() {
+  console.log("download please");
+
   const input = document.getElementById("CVprototype");
   html2canvas(input, { scale: 2 }).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
