@@ -9,6 +9,7 @@ export function EducationForm({
   makeFormAppear,
   handleEdit,
   deleteEducationInfo,
+  saveFormData,
 }) {
   return (
     <>
@@ -65,21 +66,22 @@ export function EducationForm({
         )}
 
         <div>
-          {educationList.map((school, index) => (
-            <div key={index} id="savedEducationInfo">
-              <p>School: {school.school}</p>
-              <p>Degree: {school.degree}</p>
-              <button id="editButton" onClick={() => handleEdit(index)}>
-                Edit
-              </button>
-              <button
-                id="deleteButton"
-                onClick={() => deleteEducationInfo(index)}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
+          {!saveFormData &&
+            educationList.map((school, index) => (
+              <div key={index} id="savedEducationInfo">
+                <p>School: {school.school}</p>
+                <p>Degree: {school.degree}</p>
+                <button id="editButton" onClick={() => handleEdit(index)}>
+                  Edit
+                </button>
+                <button
+                  id="deleteButton"
+                  onClick={() => deleteEducationInfo(index)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
         </div>
       </div>
     </>
