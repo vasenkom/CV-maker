@@ -59,23 +59,26 @@ function Application() {
       // If in edit mode, update the existing education entry
       setEducationList((prevList) => {
         const updatedList = [...prevList];
-        updatedList[editingIndex] = currentEducation;
+        updatedList[editingIndex] = currentEducation; // Update the item at editingIndex
         return updatedList;
       });
-      setEditingIndex(null); // Reset after editing
+      setEditingIndex(null); // Exit edit mode
     } else {
-      // Otherwise, add a new entry
+      // If not editing, add a new education entry
       setEducationList((prevList) => [...prevList, currentEducation]);
     }
 
+    // Reset currentEducation after saving
     setCurrentEducation({
       school: "",
       degree: "",
       startDate: "",
       endDate: "",
       location: "",
-    }); // Reset form after saving
-    setVisibleForm(false); // Hide form after saving
+    });
+
+    // Hide form after saving
+    setVisibleForm(false);
   }
 
   function deleteEducationInfo(index) {
@@ -106,6 +109,7 @@ function Application() {
           saveEducationInfo={saveEducationInfo}
           handleEdit={handleEdit}
           deleteEducationInfo={deleteEducationInfo}
+          saveFormData={saveFormData}
         />
       </div>
       <div id="Right">
