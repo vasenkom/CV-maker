@@ -15,6 +15,7 @@ function Application() {
     phone: "",
     address: "",
     email: "",
+    id: crypto.randomUUID(),
   });
 
   const [educationList, setEducationList] = useState([]); // Array of education objects
@@ -24,6 +25,7 @@ function Application() {
     startDate: "",
     endDate: "",
     location: "",
+    id: crypto.randomUUID(),
   });
 
   const handlePersonalInputChange = (e) => {
