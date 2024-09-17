@@ -7,6 +7,11 @@
 body {
   background-color: rgb(235, 235, 235);
 }
+.icons {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
 #Application {
   display: flex;
   flex-direction: row;
@@ -98,6 +103,9 @@ select {
 }
 .ContentButton,
 .downloadButton {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
   background-color: white;
   font-size: 20px;
   border-radius: 10px;
@@ -106,7 +114,7 @@ select {
   cursor: pointer;
 }
 .downloadButton {
-  width: 15%;
+  width: 16%;
   font-size: 20px;
   margin-left: 20px;
   margin-top: 15px;
