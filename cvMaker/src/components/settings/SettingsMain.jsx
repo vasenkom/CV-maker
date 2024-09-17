@@ -1,5 +1,7 @@
 import { SettingsButtons } from "./Buttons";
 import { ToggleSwitch } from "./ToggleSwitch";
+import brush from "../../icons/customize.png";
+import layers from "../../icons/layers.png";
 
 export function SettingPart() {
   return (
@@ -22,13 +24,15 @@ export function SettingPart() {
             text="Content"
             id="ContentButton"
             className="ContentButton"
-            image="#"
+            image={
+              <img src={layers} className="icons" alt="See content Icon" />
+            }
           />
           <SettingsButtons
             text="Customize"
             id="CustomizeButton"
             className="ContentButton"
-            image="#"
+            image={<img src={brush} className="icons" alt="Customize Icon" />}
           />
         </div>
         <ToggleSwitch />
