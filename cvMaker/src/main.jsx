@@ -7,6 +7,8 @@ import { EducationForm } from "./components/forms/EducationForm";
 import { CVprototype } from "./components/CV";
 import { SettingsButtons } from "./components/settings/Buttons";
 import { handleDownloadPDF } from "./components/downloadPDF";
+import downloadIcon from "./icons/download_icon.png";
+
 import "./index.css";
 
 function Application() {
@@ -66,17 +68,21 @@ function Application() {
       });
       setEditingIndex(null); // Exit edit mode
     } else {
-      // If not editing, add a new education entry
-      setEducationList((prevList) => [...prevList, currentEducation]);
+      // If not editing, add a new education entry with a unique id
+      setEducationList((prevList) => [
+        ...prevList,
+        { ...currentEducation, id: crypto.randomUUID() }, // Assign a new unique id
+      ]);
     }
 
-    // Reset currentEducation after saving
+    // Reset currentEducation after saving, with a new unique id
     setCurrentEducation({
       school: "",
       degree: "",
       startDate: "",
       endDate: "",
       location: "",
+      id: crypto.randomUUID(), // Ensure a new id is generated for the next entry
     });
 
     // Hide form after saving
@@ -119,7 +125,9 @@ function Application() {
           id="downloadButton"
           text="Download"
           className="ContentButton downloadButton"
-          image={<img src="#" alt="Download Icon" />}
+          image={
+            <img src={downloadIcon} className="icons" alt="Download Icon" />
+          }
           onClick={handleDownloadPDF}
         />
         <CVprototype
