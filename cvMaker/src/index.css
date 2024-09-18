@@ -25,7 +25,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 70%;
-  align-content: center;
+  align-items: center;
   justify-content: center;
 }
 #SettingPart,
@@ -52,13 +52,13 @@ input:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin: 10px 15px;
+  margin: 0px 15px 10px 15px;
 }
 .personal-info-label {
   margin-top: 10px;
   margin-left: 15px;
   margin-right: 15px;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
 }
 input[type="text"],
@@ -71,13 +71,13 @@ select {
   border: none;
   border-radius: 10px;
   background: #ffffff;
-  margin-left: 20px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 #head {
   text-align: center;
-  background-color: rgb(175, 180, 241);
+  background-color: #224968;
+  color: white;
   border-radius: 10px 10px 0px 0px;
 }
 #secondLine {
@@ -86,8 +86,43 @@ select {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  padding-top: 10px;
   padding-bottom: 15px;
 }
+#education {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the content horizontally */
+  justify-content: center; /* Centers the content vertically */
+  width: 85%;
+  margin: 10px auto; /* Centers the entire #education div horizontally */
+}
+.header-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: rgba(34, 73, 104, 0.059);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.education-entry {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+#column p {
+  margin: 5px 0;
+}
+#savedEducationInfo {
+  margin-left: 15px;
+}
+
 #formAppersButton {
   border: 2px solid rgb(174, 174, 174);
   border-radius: 50%;
@@ -97,8 +132,10 @@ select {
   color: rgb(164, 164, 164);
   font-weight: bold;
   font-size: 20px;
-  margin-left: 50%;
-  margin-right: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   margin-bottom: 15px;
 }
 .ContentButton,
@@ -114,17 +151,30 @@ select {
   cursor: pointer;
 }
 .downloadButton {
-  width: 16%;
+  width: 140px;
   font-size: 20px;
   margin-left: 20px;
   margin-top: 15px;
 }
 .formButton {
   margin-left: 15px;
+  margin-bottom: 10px;
   width: 60px;
   height: 30px;
   text-align: center;
   font-size: 18px;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 10px;
+  background-color: white;
+}
+.formButton2 {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
   border: 1px solid rgb(235, 235, 235);
   border-radius: 10px;
   background-color: white;
