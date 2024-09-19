@@ -8,7 +8,7 @@ export function CVprototype({
     <>
       <div id="CVprototype">
         <div id="head">
-          <h1 id="name" style={{ paddingTop: "15px", marginBottom: "10px" }}>
+          <h1 id="name" style={{ paddingTop: "25px", marginBottom: "10px" }}>
             {personalInfo.name}
           </h1>
           <div id="secondLine">
@@ -25,7 +25,7 @@ export function CVprototype({
         </div>
 
         <div id="education">
-          <h2>Education</h2>
+          <h3 className="header-text">Education</h3>
 
           {/* Show both saved education and current form data if saveFormData is true */}
           {saveFormData && (
@@ -45,26 +45,27 @@ export function CVprototype({
               </div>
 
               {/* Show all saved education entries except the one being edited */}
-              {educationList
-                .filter((edu) => !(edu.id === currentEducation.id))
-                .map((edu, index) => (
-                  <div key={index} className="education-entry">
-                    <div id="column">
-                      <p>
-                        {edu.startDate} - {edu.endDate}
-                      </p>
-                      <p>{edu.location}</p>
+              {saveFormData &&
+                educationList
+                  .filter((edu) => !(edu.id === currentEducation.id))
+                  .map((edu, index) => (
+                    <div key={index} className="education-entry">
+                      <div id="column">
+                        <p>
+                          {edu.startDate} - {edu.endDate}
+                        </p>
+                        <p>{edu.location}</p>
+                      </div>
+                      <div id="column">
+                        <p>{edu.school}</p>
+                        <p>{edu.degree}</p>
+                      </div>
                     </div>
-                    <div id="column">
-                      <p>{edu.school}</p>
-                      <p>{edu.degree}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
             </>
           )}
 
-          {/* Always show saved education entries if not editing */}
+          {/* Show saved education entries if not editing */}
           {!saveFormData &&
             educationList.map((edu, index) => (
               <div key={index} className="education-entry">
