@@ -10,6 +10,7 @@ export function EducationForm({
   handleEdit,
   deleteEducationInfo,
   saveFormData,
+  cancelEducationInfo,
 }) {
   return (
     <>
@@ -78,13 +79,23 @@ export function EducationForm({
               />
             </form>
 
-            <button
-              className="formButton"
-              id="saveFormButton"
-              onClick={saveEducationInfo}
-            >
-              Save
-            </button>
+            <div>
+              <button
+                className="formButton"
+                id="saveFormButton"
+                onClick={saveEducationInfo}
+              >
+                Save
+              </button>
+
+              <button
+                className="formButton"
+                id="cancelFormButton"
+                onClick={cancelEducationInfo}
+              >
+                Cancel
+              </button>
+            </div>
           </>
         ) : null}
 

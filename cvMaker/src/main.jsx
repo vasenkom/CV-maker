@@ -12,6 +12,7 @@ import downloadIcon from "./icons/download_icon.png";
 import "./index.css";
 
 function Application() {
+  // Personal data main point
   const [personalInfo, setPersonalInfo] = useState({
     name: "",
     phone: "",
@@ -20,7 +21,18 @@ function Application() {
     id: crypto.randomUUID(),
   });
 
+  // Personal dynamic data update
+  const handlePersonalInputChange = (e) => {
+    const { name, value } = e.target;
+    setPersonalInfo((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
   const [educationList, setEducationList] = useState([]); // Array of education objects
+
+  // Education data main points
   const [currentEducation, setCurrentEducation] = useState({
     school: "",
     degree: "",
@@ -30,14 +42,7 @@ function Application() {
     id: crypto.randomUUID(),
   });
 
-  const handlePersonalInputChange = (e) => {
-    const { name, value } = e.target;
-    setPersonalInfo((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
+  // Education data dynamic changes
   const handleEducationInputChange = (e) => {
     const { name, value } = e.target;
     setCurrentEducation((prevFormData) => ({
@@ -48,13 +53,14 @@ function Application() {
 
   const [visibleForm, setVisibleForm] = useState(false); // Control form visibility
 
+  // makes form appear after pressing +
   function makeFormAppear() {
     setVisibleForm(true);
     setSaveFormData(true);
   }
 
-  const [saveFormData, setSaveFormData] = useState(false);
-  const [editingIndex, setEditingIndex] = useState(null);
+  const [saveFormData, setSaveFormData] = useState(false); // Control if education data is saved or not
+  const [editingIndex, setEditingIndex] = useState(null); // Index of editing data
 
   function saveEducationInfo() {
     setSaveFormData(false);
@@ -82,11 +88,24 @@ function Application() {
       startDate: "",
       endDate: "",
       location: "",
-      id: crypto.randomUUID(), // Ensure a new id is generated for the next entry
+      id: null,
     });
 
     // Hide form after saving
     setVisibleForm(false);
+  }
+
+  function cancelEducationInfo() {
+    setCurrentEducation({
+      school: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      id: null, // Ensure a new id is generated for the next entry
+    });
+    setVisibleForm(false); // make the form disappear
+    setSaveFormData(false); // cancel the foem on cv prototype
   }
 
   function deleteEducationInfo(index) {
@@ -94,12 +113,13 @@ function Application() {
   }
 
   function handleEdit(index) {
-    setCurrentEducation(educationList[index]);
+    setCurrentEducation(educationList[index]); // Updating current data dynamicaly
     setEditingIndex(index); // Set the current index being edited
     setVisibleForm(true); // Show the form to edit
     setSaveFormData(true);
   }
 
+  //Settung for a toggle switch
   const [isChecked, setIsChecked] = useState(false); // toggle switch statues
   const [stateMessage, setStateStatus] = useState("Example is not shown"); // toggle switch massage
 
@@ -110,7 +130,7 @@ function Application() {
     if (newIsChecked) {
       setStateStatus("Example is shown");
       setPersonalInfo({
-        name: "Joe Doe",
+        name: "John Doe",
         phone: "+123457890",
         address: "Czech Republic",
         email: "mail@mail.com",
@@ -118,15 +138,15 @@ function Application() {
 
       setEducationList([
         {
-          school: "MUNI",
+          school: "ABC",
           degree: "Master degree in Biotechnology",
           startDate: "09.2023",
           endDate: "06.2025",
-          location: "Brno, Czech Republic",
+          location: "Prague, Czech Republic",
           id: crypto.randomUUID(),
         },
       ]);
-      setVisibleForm(false);
+      setVisibleForm(false); // Close the editing form
       // setSaveFormData(true); // Set save form data to true when toggled on
       // makeFormAppear();
     } else {
@@ -143,7 +163,7 @@ function Application() {
       });
 
       if (educationList.length > 0) {
-        deleteEducationInfo(educationList.length - 1); // Deletes the last entry
+        deleteEducationInfo(educationList.length - 1); // Deletes the last entry = example
       }
 
       setVisibleForm(false); // Reset save form data
@@ -173,6 +193,7 @@ function Application() {
           handleEdit={handleEdit}
           deleteEducationInfo={deleteEducationInfo}
           saveFormData={saveFormData}
+          cancelEducationInfo={cancelEducationInfo}
         />
       </div>
       <div id="Right">
