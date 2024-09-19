@@ -100,10 +100,65 @@ function Application() {
     setSaveFormData(true);
   }
 
+  const [isChecked, setIsChecked] = useState(false); // toggle switch statues
+  const [stateMessage, setStateStatus] = useState("Example is not shown"); // toggle switch massage
+
+  const toggleHandler = () => {
+    const newIsChecked = !isChecked;
+    setIsChecked(newIsChecked);
+
+    if (newIsChecked) {
+      setStateStatus("Example is shown");
+      setPersonalInfo({
+        name: "Joe Doe",
+        phone: "+123457890",
+        address: "Czech Republic",
+        email: "mail@mail.com",
+      });
+
+      setEducationList([
+        {
+          school: "MUNI",
+          degree: "Master degree in Biotechnology",
+          startDate: "09.2023",
+          endDate: "06.2025",
+          location: "Brno, Czech Republic",
+          id: crypto.randomUUID(),
+        },
+      ]);
+      setVisibleForm(false);
+      // setSaveFormData(true); // Set save form data to true when toggled on
+      // makeFormAppear();
+    } else {
+      setStateStatus("Example is not shown");
+      setPersonalInfo({ name: "", phone: "", address: "", email: "" });
+
+      setCurrentEducation({
+        school: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+        location: "",
+        id: null,
+      });
+
+      if (educationList.length > 0) {
+        deleteEducationInfo(educationList.length - 1); // Deletes the last entry
+      }
+
+      setVisibleForm(false); // Reset save form data
+    }
+  };
+
   return (
     <div id="Application">
       <div id="Left">
-        <SettingPart personalInfo={personalInfo} />
+        <SettingPart
+          personalInfo={personalInfo}
+          isChecked={isChecked}
+          stateMessage={stateMessage}
+          toggleHandler={toggleHandler}
+        />
         <PersonalForms
           personalInfo={personalInfo}
           handleInputChange={handlePersonalInputChange}
