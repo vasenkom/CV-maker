@@ -16,11 +16,34 @@ export function EducationForm({
       <div id="form">
         <p className="personal-info-label">Education:</p>
 
-        {!visibleForm ? (
-          <button id="formAppersButton" onClick={makeFormAppear}>
-            +
-          </button>
-        ) : (
+        {/* Render saved education list */}
+        <div>
+          {!visibleForm &&
+            educationList.length > 0 &&
+            educationList.map((school, index) => (
+              <div key={index} id="savedEducationInfo">
+                <p>School: {school.school}</p>
+                <p>Degree: {school.degree}</p>
+                <button
+                  className="formButton2"
+                  id="editButton"
+                  onClick={() => handleEdit(index)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="formButton2"
+                  id="deleteButton"
+                  onClick={() => deleteEducationInfo(index)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+        </div>
+
+        {/* Render the form if it's visible */}
+        {visibleForm ? (
           <>
             <form id="personalForm">
               <label htmlFor="school">School:</label>
@@ -63,26 +86,14 @@ export function EducationForm({
               Save
             </button>
           </>
-        )}
+        ) : null}
 
-        <div>
-          {!saveFormData &&
-            educationList.map((school, index) => (
-              <div key={index} id="savedEducationInfo">
-                <p>School: {school.school}</p>
-                <p>Degree: {school.degree}</p>
-                <button id="editButton" onClick={() => handleEdit(index)}>
-                  Edit
-                </button>
-                <button
-                  id="deleteButton"
-                  onClick={() => deleteEducationInfo(index)}
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
-        </div>
+        {/* Add "+" button at the end */}
+        {!visibleForm && (
+          <button id="formAppersButton" onClick={makeFormAppear}>
+            +
+          </button>
+        )}
       </div>
     </>
   );
