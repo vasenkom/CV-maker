@@ -1,21 +1,7 @@
 import React, { useState } from "react";
 import "./toggleSwitch.css";
 
-export function ToggleSwitch() {
-  const [isChecked, setIsChecked] = useState(false);
-  const [stateMessage, setStateStatus] = useState("Example is shown");
-
-  const toggleHandler = () => {
-    setIsChecked(!isChecked);
-
-    console.log(
-      "Toggle switch",
-      isChecked ? "Example is shown" : "Example is deleted"
-    );
-
-    setStateStatus(isChecked ? "Example is shown" : "Example is deleted");
-  };
-
+export function ToggleSwitch({ isChecked, stateMessage, toggleHandler }) {
   return (
     <div
       style={{
