@@ -292,6 +292,12 @@ function Application() {
     }
   };
 
+  const [customizeMode, setCustomizeMode] = useState(false);
+
+  function customizeModeOnOff() {
+    setCustomizeMode(!customizeMode);
+  }
+
   return (
     <div id="Application">
       <div id="Left">
@@ -300,6 +306,7 @@ function Application() {
           isChecked={isChecked}
           stateMessage={stateMessage}
           toggleHandler={toggleHandler}
+          customizeModeOnOff={customizeModeOnOff}
         />
         <PersonalForms
           personalInfo={personalInfo}
