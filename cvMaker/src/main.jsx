@@ -7,6 +7,7 @@ import { EducationForm } from "./components/forms/EducationForm";
 import { CVprototype } from "./components/CV";
 import { SettingsButtons } from "./components/settings/Buttons";
 import { handleDownloadPDF } from "./components/downloadPDF";
+import { JobForm } from "./components/forms/JobExperience";
 import downloadIcon from "./icons/download_icon.png";
 
 import "./index.css";
@@ -53,7 +54,7 @@ function Application() {
 
   const [visibleForm, setVisibleForm] = useState(false); // Control form visibility
 
-  // makes form appear after pressing +
+  // Makes education form appear after pressing +
   function makeFormAppear() {
     setVisibleForm(true);
     setSaveFormData(true);
@@ -81,7 +82,7 @@ function Application() {
       ]);
     }
 
-    // Reset currentEducation after saving, with a new unique id
+    // Reset currentEducation after saving,
     setCurrentEducation({
       school: "",
       degree: "",
@@ -105,7 +106,7 @@ function Application() {
       id: null, // Ensure a new id is generated for the next entry
     });
     setVisibleForm(false); // make the form disappear
-    setSaveFormData(false); // cancel the foem on cv prototype
+    setSaveFormData(false); // cancel the form on CV prototype
   }
 
   function deleteEducationInfo(index) {
@@ -113,15 +114,108 @@ function Application() {
   }
 
   function handleEdit(index) {
-    setCurrentEducation(educationList[index]); // Updating current data dynamicaly
+    setCurrentEducation(educationList[index]); // Updating current data dynamically
     setEditingIndex(index); // Set the current index being edited
     setVisibleForm(true); // Show the form to edit
     setSaveFormData(true);
   }
 
-  //Settung for a toggle switch
-  const [isChecked, setIsChecked] = useState(false); // toggle switch statues
-  const [stateMessage, setStateStatus] = useState("Example is not shown"); // toggle switch massage
+  // Job Experience part
+  const [jobList, setJobList] = useState([]); // Array of job objects
+
+  // Job data main points
+  const [currentJobInput, setCurrentJobInput] = useState({
+    companyName: "",
+    positionTitle: "",
+    startDateJob: "",
+    endDateJob: "",
+    locationJob: "",
+    descriptionJob: "",
+    idJob: crypto.randomUUID(),
+  });
+
+  // Job data dynamic changes
+  const handleJobInputChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentJobInput((prevJobFormData) => ({
+      ...prevJobFormData,
+      [name]: value,
+    }));
+  };
+
+  const [visibleJobForm, setVisibleJobForm] = useState(false); // Control job form visibility
+
+  // Makes form appear after pressing +
+  function makeJobFormAppear() {
+    setVisibleJobForm(true);
+    setSaveJobFormData(true);
+  }
+
+  const [saveJobFormData, setSaveJobFormData] = useState(false); // Control if job data is saved or not
+  const [editingJobIndex, setEditingJobIndex] = useState(null); // Index of editing job data
+
+  function saveJobInfo() {
+    setSaveJobFormData(false);
+
+    if (editingJobIndex !== null) {
+      // If in edit mode, update the existing job entry
+      setJobList((prevList) => {
+        const updatedJobList = [...prevList];
+        updatedJobList[editingJobIndex] = currentJobInput; // Update the item at editingJobIndex
+        return updatedJobList;
+      });
+      setEditingJobIndex(null); // Exit edit mode
+    } else {
+      // If not editing, add a new job entry with a unique id
+      setJobList((prevList) => [
+        ...prevList,
+        { ...currentJobInput, idJob: crypto.randomUUID() }, // Assign a new unique id
+      ]);
+    }
+
+    // Reset currentJobInput after saving, with a new unique id
+    setCurrentJobInput({
+      companyName: "",
+      positionTitle: "",
+      startDateJob: "",
+      endDateJob: "",
+      locationJob: "",
+      descriptionJob: "",
+      idJob: null,
+    });
+
+    // Hide form after saving
+    setVisibleJobForm(false);
+  }
+
+  function cancelJobInfo() {
+    setCurrentJobInput({
+      companyName: "",
+      positionTitle: "",
+      startDateJob: "",
+      endDateJob: "",
+      locationJob: "",
+      descriptionJob: "",
+      idJob: crypto.randomUUID(),
+    });
+    setVisibleJobForm(false); // make the form disappear
+    setSaveJobFormData(false); // cancel the form on CV prototype
+  }
+
+  function deleteJobInfo(index) {
+    setJobList((prevList) => prevList.filter((_, i) => i !== index));
+  }
+
+  function handleJobEdit(index) {
+    setCurrentJobInput(jobList[index]); // Updating current data dynamically
+    setEditingJobIndex(index); // Set the current index being edited
+    setVisibleJobForm(true); // Show the form to edit
+    setSaveJobFormData(true);
+  }
+
+  // Setting for a toggle switch
+  const [isChecked, setIsChecked] = useState(false); // toggle switch status
+  const [stateMessage, setStateStatus] = useState("Example is not shown"); // toggle switch message
 
   const toggleHandler = () => {
     const newIsChecked = !isChecked;
@@ -138,7 +232,7 @@ function Application() {
 
       setEducationList([
         {
-          school: "ABC",
+          school: "ABC University",
           degree: "Master degree in Biotechnology",
           startDate: "09.2023",
           endDate: "06.2025",
@@ -146,9 +240,22 @@ function Application() {
           id: crypto.randomUUID(),
         },
       ]);
+
+      setJobList([
+        {
+          companyName: "Company A",
+          positionTitle: "Manager",
+          startDateJob: "12.2024",
+          endDateJob: "present",
+          locationJob: "Prague, Czech Republic",
+          descriptionJob:
+            "Overseeing key operations and driving strategic initiatives to improve efficiency and performance at Company A. Managing teams, optimizing processes, and ensuring the achievement of business objectives in a fast-paced environment.",
+          idJob: crypto.randomUUID(),
+        },
+      ]);
+
       setVisibleForm(false); // Close the editing form
-      // setSaveFormData(true); // Set save form data to true when toggled on
-      // makeFormAppear();
+      setVisibleJobForm(false);
     } else {
       setStateStatus("Example is not shown");
       setPersonalInfo({ name: "", phone: "", address: "", email: "" });
@@ -162,11 +269,26 @@ function Application() {
         id: null,
       });
 
+      setCurrentJobInput({
+        companyName: "",
+        positionTitle: "",
+        startDateJob: "",
+        endDateJob: "",
+        locationJob: "",
+        descriptionJob: "",
+        idJob: null,
+      });
+
       if (educationList.length > 0) {
         deleteEducationInfo(educationList.length - 1); // Deletes the last entry = example
       }
 
+      if (jobList.length > 0) {
+        deleteJobInfo(jobList.length - 1); // Deletes the last entry = example
+      }
+
       setVisibleForm(false); // Reset save form data
+      setVisibleJobForm(false);
     }
   };
 
@@ -195,6 +317,18 @@ function Application() {
           saveFormData={saveFormData}
           cancelEducationInfo={cancelEducationInfo}
         />
+        <JobForm
+          currentJobInput={currentJobInput}
+          jobList={jobList}
+          handleJobInputChange={handleJobInputChange}
+          visibleJobForm={visibleJobForm}
+          makeJobFormAppear={makeJobFormAppear}
+          saveJobInfo={saveJobInfo}
+          handleJobEdit={handleJobEdit}
+          deleteJobInfo={deleteJobInfo}
+          saveJobFormData={saveJobFormData}
+          cancelJobInfo={cancelJobInfo}
+        />
       </div>
       <div id="Right">
         <SettingsButtons
@@ -211,6 +345,9 @@ function Application() {
           educationList={educationList}
           saveFormData={saveFormData}
           currentEducation={currentEducation}
+          jobList={jobList}
+          saveJobFormData={saveJobFormData}
+          currentJobInput={currentJobInput}
         />
       </div>
     </div>
@@ -219,7 +356,6 @@ function Application() {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {" "}
-    <Application />{" "}
+    <Application />
   </StrictMode>
 );
