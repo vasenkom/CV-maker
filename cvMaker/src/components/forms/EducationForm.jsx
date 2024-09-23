@@ -59,18 +59,26 @@ export function EducationForm({
                 value={currentEducation.degree || ""}
                 onChange={handleInputChange}
               />
-              <label htmlFor="startDate">Start Date:</label>
-              <Form
-                name="startDate"
-                value={currentEducation.startDate || ""}
-                onChange={handleInputChange}
-              />
-              <label htmlFor="endDate">End Date:</label>
-              <Form
-                name="endDate"
-                value={currentEducation.endDate || ""}
-                onChange={handleInputChange}
-              />
+
+              <div className="dateFormMain">
+                <div className="dateForm">
+                  <label htmlFor="startDate">Start Date:</label>
+                  <Form
+                    name="startDate"
+                    value={currentEducation.startDate || ""}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="dateForm">
+                  <label htmlFor="endDate">End Date:</label>
+                  <Form
+                    name="endDate"
+                    value={currentEducation.endDate || ""}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+
               <label htmlFor="location">Location:</label>
               <Form
                 name="location"
