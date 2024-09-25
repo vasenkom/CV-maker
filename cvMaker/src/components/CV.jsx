@@ -6,22 +6,44 @@ export function CVprototype({
   jobList,
   saveJobFormData,
   currentJobInput,
+  headColor,
+  headFontColor,
+  cvFont,
 }) {
   return (
     <>
-      <div id="CVprototype">
-        <div id="head">
-          <h1 id="name" style={{ paddingTop: "25px", marginBottom: "10px" }}>
+      <div id="CVprototype" style={{ fontFamily: cvFont }}>
+        <div id="head" style={{ background: headColor, color: headFontColor }}>
+          <h1
+            id="name"
+            style={{
+              paddingTop: "25px",
+              marginBottom: "10px",
+              color: headFontColor,
+            }}
+          >
             {personalInfo.name}
           </h1>
           <div id="secondLine">
-            <p id="email" className="secondLineText">
+            <p
+              id="email"
+              className="secondLineText"
+              style={{ color: headFontColor }}
+            >
               {personalInfo.email}
             </p>
-            <p id="phone" className="secondLineText">
+            <p
+              id="phone"
+              className="secondLineText"
+              style={{ color: headFontColor }}
+            >
               {personalInfo.phone}
             </p>
-            <p id="address" className="secondLineText">
+            <p
+              id="address"
+              className="secondLineText"
+              style={{ color: headFontColor }}
+            >
               {personalInfo.address}
             </p>
           </div>
@@ -29,10 +51,11 @@ export function CVprototype({
 
         <div id="education">
           {/* Show both saved education and current form data if saveFormData is true */}
+          <h3 className="header-text">Education</h3>
           {saveFormData && (
             <>
               {/* Show the current education being edited */}
-              <h3 className="header-text">Education</h3>
+
               <div className="education-entry">
                 <div id="column">
                   <p>
@@ -53,7 +76,6 @@ export function CVprototype({
                   .filter((edu) => !(edu.id === currentEducation.id))
                   .map((edu, index) => (
                     <div key={index} className="education-entry">
-                      <h3 className="header-text">Education</h3>
                       <div id="column">
                         <p>
                           {edu.startDate} - {edu.endDate}
@@ -73,7 +95,6 @@ export function CVprototype({
           {!saveFormData &&
             educationList.map((edu, index) => (
               <div key={index} className="education-entry">
-                <h3 className="header-text">Education</h3>
                 <div id="column">
                   <p>
                     {edu.startDate} - {edu.endDate}
@@ -90,11 +111,11 @@ export function CVprototype({
 
         {/* Job experience part */}
         <div id="jobExperience">
+          <h3 className="header-text">Job experience</h3>
           {/* Show both saved education and current form data if saveFormData is true */}
           {saveJobFormData && (
             <>
               {/* Show the current education being edited */}
-              <h3 className="header-text">Job experience</h3>
               <div className="education-entry">
                 <div id="column">
                   <p>
@@ -117,7 +138,6 @@ export function CVprototype({
                   .filter((job) => !(job.id === currentJobInput.idJob))
                   .map((job, index) => (
                     <div key={index} className="education-entry">
-                      <h3 className="header-text">Education</h3>
                       <div id="column">
                         <p>
                           {job.startDateJob} - {job.endDateJob}
@@ -138,7 +158,6 @@ export function CVprototype({
           {!saveJobFormData &&
             jobList.map((job, index) => (
               <div key={index} className="education-entry">
-                <h3 className="header-text">Job Experience</h3>
                 <div id="column">
                   <p>
                     {job.startDateJob} - {job.endDateJob}
