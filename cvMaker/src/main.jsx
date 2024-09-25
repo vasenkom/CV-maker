@@ -8,6 +8,7 @@ import { CVprototype } from "./components/CV";
 import { SettingsButtons } from "./components/settings/Buttons";
 import { handleDownloadPDF } from "./components/downloadPDF";
 import { JobForm } from "./components/forms/JobExperience";
+import { CustomizeFunctions } from "./components/customize";
 import downloadIcon from "./icons/download_icon.png";
 
 import "./index.css";
@@ -294,10 +295,37 @@ function Application() {
 
   const [customizeMode, setCustomizeMode] = useState(false);
 
-  function customizeModeOnOff() {
-    setCustomizeMode(!customizeMode);
+  function customizeModeOff() {
+    setCustomizeMode(false);
+    console.log("CV data mode");
   }
 
+  function customizeModeOn() {
+    setCustomizeMode(true);
+    console.log("CV customize mode");
+  }
+
+  // head color of cv
+  const [headColor, setHeadColor] = useState("rgb(34, 73, 104)"); // default color for head is dark blue
+
+  function changeHeadColor(event) {
+    setHeadColor(event.target.value);
+  }
+
+  // head color of cv font
+  const [headFontColor, setHeadFontColor] = useState("white"); // default color for head font color is white
+
+  function changeHeadFontColor(event) {
+    setHeadFontColor(event.target.value);
+  }
+
+  // cv font settings
+  const [cvFont, setCVfont] = useState("serif"); // default font is "Libre Franklin", sans-serif
+
+  function changeFontFamily(fontfamily) {
+    setCVfont(fontfamily);
+    console.log("Font family changed to:", fontfamily); // Add this line
+  }
   return (
     <div id="Application">
       <div id="Left">
@@ -306,11 +334,13 @@ function Application() {
           isChecked={isChecked}
           stateMessage={stateMessage}
           toggleHandler={toggleHandler}
-          customizeModeOnOff={customizeModeOnOff}
+          customizeModeOn={customizeModeOn}
+          customizeModeOff={customizeModeOff}
         />
         <PersonalForms
           personalInfo={personalInfo}
           handleInputChange={handlePersonalInputChange}
+          customizeMode={customizeMode}
         />
         <EducationForm
           currentEducation={currentEducation}
@@ -323,6 +353,7 @@ function Application() {
           deleteEducationInfo={deleteEducationInfo}
           saveFormData={saveFormData}
           cancelEducationInfo={cancelEducationInfo}
+          customizeMode={customizeMode}
         />
         <JobForm
           currentJobInput={currentJobInput}
@@ -335,6 +366,15 @@ function Application() {
           deleteJobInfo={deleteJobInfo}
           saveJobFormData={saveJobFormData}
           cancelJobInfo={cancelJobInfo}
+          customizeMode={customizeMode}
+        />
+        <CustomizeFunctions
+          customizeMode={customizeMode}
+          changeHeadColor={changeHeadColor}
+          headColor={headColor}
+          headFontColor={headFontColor}
+          changeHeadFontColor={changeHeadFontColor}
+          changeFontFamily={changeFontFamily}
         />
       </div>
       <div id="Right">
@@ -355,6 +395,9 @@ function Application() {
           jobList={jobList}
           saveJobFormData={saveJobFormData}
           currentJobInput={currentJobInput}
+          headColor={headColor}
+          headFontColor={headFontColor}
+          cvFont={cvFont}
         />
       </div>
     </div>
