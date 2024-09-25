@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Libre Franklin", sans-serif;
+  /* font-family: "Libre Franklin", sans-serif; */
 }
 body {
   background-color: rgb(235, 235, 235);
@@ -20,6 +20,13 @@ body {
   display: flex;
   flex-direction: column;
   width: 30%; /* Maybe more */
+  font-family: "Libre Franklin", sans-serif;
+}
+.settingsButtonDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 #Right {
   display: flex;
@@ -37,7 +44,16 @@ body {
   background-color: white;
   border-radius: 10px;
 }
-input {
+#form2 {
+  margin-top: 15px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+input[type="text"] {
   border: 1px solid transparent;
   border-radius: 10px;
   background-color: rgb(235, 235, 235);
@@ -51,15 +67,27 @@ input:focus-visible {
 #personalForm {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  margin: 0px 15px 10px 15px;
+  gap: 8px;
+  margin: 0px 15px 15px 15px;
 }
 .personal-info-label {
-  margin-top: 10px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 15px 15px;
   font-size: 19px;
   font-weight: 600;
+}
+.dateFormMain {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  /* justify-content: space-between; */
+  gap: 10px;
+}
+.dateForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 50%;
 }
 input[type="text"],
 select {
@@ -69,16 +97,16 @@ select {
   width: 95%;
   height: 100%;
   border: none;
-  border-radius: 10px;
+  border-radius: 0px;
   background: #ffffff;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 #head {
   text-align: center;
-  background-color: #224968;
-  color: white;
-  border-radius: 10px 10px 0px 0px;
+  /* background-color: #224968; */
+  color: black;
+  border-radius: 0;
 }
 #secondLine {
   display: flex;
@@ -89,7 +117,8 @@ select {
   padding-top: 10px;
   padding-bottom: 15px;
 }
-#education {
+#education,
+#jobExperience {
   display: flex;
   flex-direction: column;
   align-items: center; /* Centers the content horizontally */
@@ -97,6 +126,7 @@ select {
   width: 85%;
   margin: 10px auto; /* Centers the entire #education div horizontally */
 }
+
 .header-text {
   display: flex;
   justify-content: center;
@@ -122,15 +152,18 @@ select {
 #savedEducationInfo {
   margin-left: 15px;
 }
+#savedEducationInfo p {
+  margin-bottom: 5px;
+}
 
 #formAppersButton {
-  border: 2px solid rgb(174, 174, 174);
+  border: 1px solid rgb(174, 174, 174);
   border-radius: 50%;
   width: 35px;
   height: 35px;
   background-color: transparent;
   color: rgb(164, 164, 164);
-  font-weight: bold;
+  font-weight: 200;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -147,18 +180,23 @@ select {
   font-size: 20px;
   border-radius: 10px;
   border: 1px solid rgb(235, 235, 235);
-  padding: 5px 7px;
+  padding: 5px 11px;
   cursor: pointer;
+  font-family: "Libre Franklin", sans-serif;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .downloadButton {
   width: 140px;
   font-size: 20px;
   margin-left: 20px;
   margin-top: 15px;
+  margin-bottom: 0px;
 }
 .formButton {
   margin-left: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   width: 60px;
   height: 30px;
   text-align: center;
@@ -178,4 +216,132 @@ select {
   border: 1px solid rgb(235, 235, 235);
   border-radius: 10px;
   background-color: white;
+}
+#headColor #headFontColor {
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  width: 40px; /* Adjust the width */
+  height: 40px; /* Adjust the height */
+  border: 1px solid transparent; /* Remove border */
+  border-radius: 0;
+  background-color: transparent;
+  cursor: pointer; /* Change cursor to pointer */
+}
+.fontButtons {
+  margin-left: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.fontButtons button {
+  border: 1px solid rgb(174, 174, 174);
+  border-radius: 15%;
+  background-color: transparent;
+  font-size: 18px;
+  padding: 5px 7px;
+}
+@media only screen and (min-width: 2500px) {
+  #Application {
+    justify-content: center;
+  }
+  #Left {
+    width: 20%; /* Maybe more */
+  }
+  #Right {
+    width: 55%;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  #Application {
+    justify-content: center;
+  }
+  #Left {
+    width: 25%; /* Maybe more */
+  }
+  #Right {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1115px) {
+  .settingsButtonDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 160px;
+  }
+  #ContentButton {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 760px) {
+  #SettingPartContext {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+  .toggleDIV {
+    display: flex;
+    flex-direction: column;
+  }
+  #form2,
+  .fontButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  input[type="color"] {
+    margin-left: 15px;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #Application {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #Left {
+    width: 55%; /* Maybe more */
+  }
+  #form2,
+  .fontButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers items vertically */
+    justify-content: center; /* Centers items horizontally */
+  }
+  input[type="color"] {
+    margin-left: 0;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+  #Right {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  #Left {
+    width: 70%; /* Maybe more */
+  }
+  #Right {
+    width: 90%;
+  }
+  #secondLine {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
