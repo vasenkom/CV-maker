@@ -11,10 +11,11 @@ export function EducationForm({
   deleteEducationInfo,
   saveFormData,
   cancelEducationInfo,
+  customizeMode,
 }) {
   return (
     <>
-      <div id="form">
+      <div id="form" style={{ display: customizeMode ? "none" : "block" }}>
         <p className="personal-info-label">Education:</p>
 
         {/* Render saved education list */}
