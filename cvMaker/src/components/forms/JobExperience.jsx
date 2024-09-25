@@ -11,10 +11,11 @@ export function JobForm({
   deleteJobInfo,
   saveJobFormData,
   cancelJobInfo,
+  customizeMode,
 }) {
   return (
     <>
-      <div id="form">
+      <div id="form" style={{ display: customizeMode ? "none" : "block" }}>
         <p className="personal-info-label">Job Experience:</p>
 
         {/* Render saved education list */}

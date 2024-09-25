@@ -1,9 +1,13 @@
 import { Form } from "./form";
 
-export function PersonalForms({ personalInfo, handleInputChange }) {
+export function PersonalForms({
+  personalInfo,
+  handleInputChange,
+  customizeMode,
+}) {
   return (
     <>
-      <div id="form">
+      <div id="form" style={{ display: customizeMode ? "none" : "block" }}>
         <p className="personal-info-label">Personal info:</p>
         <form id="personalForm">
           <label htmlFor="name">Name:</label>
