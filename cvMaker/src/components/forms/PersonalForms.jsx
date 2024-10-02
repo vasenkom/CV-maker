@@ -5,35 +5,24 @@ export function PersonalForms({
   handleInputChange,
   customizeMode,
 }) {
+  const formField = [
+    { label: "Name", name: "name", value: personalInfo.name },
+    { label: "Email", name: "email", value: personalInfo.email },
+    { label: "Phone number", name: "phone", value: personalInfo.phone },
+    { label: "Address", name: "address", value: personalInfo.address },
+  ];
+
   return (
     <>
       <div id="form" style={{ display: customizeMode ? "none" : "block" }}>
         <p className="personal-info-label">Personal info:</p>
         <form id="personalForm">
-          <label htmlFor="name">Name:</label>
-          <Form
-            name="name"
-            value={personalInfo.name}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="email">Email:</label>
-          <Form
-            name="email"
-            value={personalInfo.email}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="phone">Phone number:</label>
-          <Form
-            name="phone"
-            value={personalInfo.phone}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="address">Address:</label>
-          <Form
-            name="address"
-            value={personalInfo.address}
-            onChange={handleInputChange}
-          />
+          {formField.map(({ label, name, value }, index) => (
+            <div key={index}>
+              <label htmlFor={name}>{label}:</label>
+              <Form name={name} value={value} onChange={handleInputChange} />
+            </div>
+          ))}
         </form>
       </div>
     </>
