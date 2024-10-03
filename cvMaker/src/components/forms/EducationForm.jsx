@@ -13,6 +13,13 @@ export function EducationForm({
   cancelEducationInfo,
   customizeMode,
 }) {
+  function renderForm(labelText, name, value) {
+    <div>
+      <label htmlFor={name}>{labelText}:</label>
+      <Form name={name} value={value || ""} onChange={handleInputChange} />
+    </div>;
+  }
+
   return (
     <>
       <div id="form" style={{ display: customizeMode ? "none" : "block" }}>
@@ -48,44 +55,19 @@ export function EducationForm({
         {visibleForm ? (
           <>
             <form id="personalForm">
-              <label htmlFor="school">School:</label>
-              <Form
-                name="school"
-                value={currentEducation.school || ""}
-                onChange={handleInputChange}
-              />
-              <label htmlFor="degree">Degree:</label>
-              <Form
-                name="degree"
-                value={currentEducation.degree || ""}
-                onChange={handleInputChange}
-              />
+              {renderForm("School", "school", currentEducation.school)}
+              {renderForm("Degree", "degree", currentEducation.degree)}
 
               <div className="dateFormMain">
-                <div className="dateForm">
-                  <label htmlFor="startDate">Start Date:</label>
-                  <Form
-                    name="startDate"
-                    value={currentEducation.startDate || ""}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="dateForm">
-                  <label htmlFor="endDate">End Date:</label>
-                  <Form
-                    name="endDate"
-                    value={currentEducation.endDate || ""}
-                    onChange={handleInputChange}
-                  />
-                </div>
+                {renderForm(
+                  "Start Date",
+                  "startDate",
+                  currentEducation.startDate
+                )}
+                {renderForm("End Date", "endDate", currentEducation.endDate)}
               </div>
 
-              <label htmlFor="location">Location:</label>
-              <Form
-                name="location"
-                value={currentEducation.location || ""}
-                onChange={handleInputChange}
-              />
+              {renderForm("Location", "location", currentEducation.location)}
             </form>
 
             <div>
