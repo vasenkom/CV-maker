@@ -14,10 +14,12 @@ export function EducationForm({
   customizeMode,
 }) {
   function renderForm(labelText, name, value) {
-    <div>
-      <label htmlFor={name}>{labelText}:</label>
-      <Form name={name} value={value || ""} onChange={handleInputChange} />
-    </div>;
+    return (
+      <div>
+        <label htmlFor={name}>{labelText}:</label>
+        <Form name={name} value={value || ""} onChange={handleInputChange} />
+      </div>
+    );
   }
 
   return (
