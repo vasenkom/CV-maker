@@ -6,55 +6,50 @@ export function CustomizeFunctions({
   changeHeadFontColor,
   changeFontFamily,
 }) {
+  const renderColorInput = (label, name, value, onChange, id) => (
+    <div id={id}>
+      <p className="personal-info-label">{label}</p>
+      <input type="color" name={name} value={value} onChange={onChange} />
+    </div>
+  );
+
+  const fonts = [
+    { id: "serif", label: "Serif", family: '"Times New Roman", serif' },
+    { id: "sans", label: "Sans", family: '"Libre Franklin", sans-serif' },
+    { id: "mono", label: "Mono", family: '"Courier New", monospace' },
+  ];
+
   return (
     <div style={{ display: customizeMode ? "block" : "none" }}>
-      <div id="form2">
-        <p className="personal-info-label">Accent Color </p>
-        <input
-          type="color"
-          name="headColor"
-          id="headColor"
-          value={headColor}
-          onChange={changeHeadColor}
-        />
-      </div>
-      <div id="form2">
-        <p className="personal-info-label">CV Font Color</p>
-        <input
-          type="color"
-          name="headFontColor"
-          id="headFontColor"
-          value={headFontColor}
-          onChange={changeHeadFontColor}
-        />
-      </div>
+      {renderColorInput(
+        "Accent Color",
+        "headColor",
+        headColor,
+        changeHeadColor,
+        "form2"
+      )}
+      {renderColorInput(
+        "CV Font Color",
+        "headFontColor",
+        headFontColor,
+        changeHeadFontColor,
+        "form2"
+      )}
+
       <div id="form">
         <p className="personal-info-label">Font</p>
         <div className="fontButtons">
-          <button
-            type="button"
-            name="fonts"
-            id="serif"
-            onClick={() => changeFontFamily('"Times New Roman", serif')}
-          >
-            Aa <br /> Serif{" "}
-          </button>
-          <button
-            type="button"
-            name="fonts"
-            id="sans"
-            onClick={() => changeFontFamily('"Libre Franklin", sans-serif')}
-          >
-            Aa <br /> Sans{" "}
-          </button>
-          <button
-            type="button"
-            name="fonts"
-            id="mono"
-            onClick={() => changeFontFamily('"Courier New", monospace')}
-          >
-            Aa <br /> Mono{" "}
-          </button>
+          {fonts.map((font) => (
+            <button
+              key={font.id}
+              type="button"
+              name="fonts"
+              id={font.id}
+              onClick={() => changeFontFamily(font.family)}
+            >
+              Aa <br /> {font.label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
