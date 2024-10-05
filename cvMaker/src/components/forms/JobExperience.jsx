@@ -13,6 +13,15 @@ export function JobForm({
   cancelJobInfo,
   customizeMode,
 }) {
+  function renderForm(labelText, name, value) {
+    return (
+      <div>
+        <label htmlFor={name}>{labelText}:</label>
+        <Form name={name} value={value || ""} onChange={handleJobEdit} />
+      </div>
+    );
+  }
+
   return (
     <>
       <div id="form" style={{ display: customizeMode ? "none" : "block" }}>
@@ -47,51 +56,41 @@ export function JobForm({
         {visibleJobForm ? (
           <>
             <form id="personalForm">
-              <label htmlFor="companyName">Company name:</label>
-              <Form
-                name="companyName"
-                value={currentJobInput.companyName || ""}
-                onChange={handleJobInputChange}
-              />
-              <label htmlFor="positionTitle">Position title:</label>
-              <Form
-                name="positionTitle"
-                value={currentJobInput.positionTitle || ""}
-                onChange={handleJobInputChange}
-              />
+              {renderForm(
+                "Company Name",
+                "companyName",
+                currentJobInput.companyName
+              )}
+              {renderForm(
+                "Position Title",
+                "positionTitle",
+                currentJobInput.positionTitle
+              )}
 
               <div className="dateFormMain">
-                <div className="dateForm">
-                  <label htmlFor="startDateJob">Start Date:</label>
-                  <Form
-                    name="startDateJob"
-                    value={currentJobInput.startDateJob || ""}
-                    onChange={handleJobInputChange}
-                  />
-                </div>
-                <div className="dateForm">
-                  <label htmlFor="endDateJob">End Date:</label>
-                  <Form
-                    name="endDateJob"
-                    value={currentJobInput.endDateJob || ""}
-                    onChange={handleJobInputChange}
-                  />
-                </div>
+                {renderForm(
+                  "Start Date",
+                  "startDateJob",
+                  currentJobInput.startDateJob
+                )}
+                {renderForm(
+                  "End Date",
+                  "endDateJob",
+                  currentJobInput.endDateJob
+                )}
               </div>
 
-              <label htmlFor="locationJob">Location:</label>
-              <Form
-                name="locationJob"
-                value={currentJobInput.locationJob || ""}
-                onChange={handleJobInputChange}
-              />
+              {renderForm(
+                "Location",
+                "locationJob",
+                currentJobInput.locationJob
+              )}
 
-              <label htmlFor="descriptionJob">Description:</label>
-              <Form
-                name="descriptionJob"
-                value={currentJobInput.descriptionJob || ""}
-                onChange={handleJobInputChange}
-              />
+              {renderForm(
+                "Job Description",
+                "descriptionJob",
+                currentJobInput.descriptionJob
+              )}
             </form>
 
             <div>
