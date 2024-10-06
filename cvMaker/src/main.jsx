@@ -13,45 +13,48 @@ import downloadIcon from "./icons/download_icon.png";
 
 import "./index.css";
 
+// Default values
+const defaultPersonalInfo = {
+  name: "",
+  phone: "",
+  address: "",
+  email: "",
+  id: crypto.randomUUID(),
+};
+
+const defaultEducation = {
+  school: "",
+  degree: "",
+  startDate: "",
+  endDate: "",
+  location: "",
+  id: crypto.randomUUID(),
+};
+
+const defaultJob = {
+  companyName: "",
+  positionTitle: "",
+  startDateJob: "",
+  endDateJob: "",
+  locationJob: "",
+  descriptionJob: "",
+  idJob: crypto.randomUUID(),
+};
+
 function Application() {
   // Personal data main point
-  const [personalInfo, setPersonalInfo] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    email: "",
-    id: crypto.randomUUID(),
-  });
+  const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
 
-  // Personal dynamic data update
-  const handlePersonalInputChange = (e) => {
+  // Personal/Education/Job data dynamic update
+  const handleInputChange = (setter) => (e) => {
     const { name, value } = e.target;
-    setPersonalInfo((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    setter((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const [educationList, setEducationList] = useState([]); // Array of education objects
 
   // Education data main points
-  const [currentEducation, setCurrentEducation] = useState({
-    school: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    id: crypto.randomUUID(),
-  });
-
-  // Education data dynamic changes
-  const handleEducationInputChange = (e) => {
-    const { name, value } = e.target;
-    setCurrentEducation((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
+  const [currentEducation, setCurrentEducation] = useState(defaultEducation);
 
   const [visibleForm, setVisibleForm] = useState(false); // Control form visibility
 
@@ -84,28 +87,14 @@ function Application() {
     }
 
     // Reset currentEducation after saving,
-    setCurrentEducation({
-      school: "",
-      degree: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-      id: null,
-    });
+    setCurrentEducation(defaultEducation);
 
     // Hide form after saving
     setVisibleForm(false);
   }
 
   function cancelEducationInfo() {
-    setCurrentEducation({
-      school: "",
-      degree: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-      id: null, // Ensure a new id is generated for the next entry
-    });
+    setCurrentEducation(defaultEducation);
     setVisibleForm(false); // make the form disappear
     setSaveFormData(false); // cancel the form on CV prototype
   }
@@ -125,24 +114,7 @@ function Application() {
   const [jobList, setJobList] = useState([]); // Array of job objects
 
   // Job data main points
-  const [currentJobInput, setCurrentJobInput] = useState({
-    companyName: "",
-    positionTitle: "",
-    startDateJob: "",
-    endDateJob: "",
-    locationJob: "",
-    descriptionJob: "",
-    idJob: crypto.randomUUID(),
-  });
-
-  // Job data dynamic changes
-  const handleJobInputChange = (e) => {
-    const { name, value } = e.target;
-    setCurrentJobInput((prevJobFormData) => ({
-      ...prevJobFormData,
-      [name]: value,
-    }));
-  };
+  const [currentJobInput, setCurrentJobInput] = useState(defaultJob);
 
   const [visibleJobForm, setVisibleJobForm] = useState(false); // Control job form visibility
 
@@ -175,30 +147,14 @@ function Application() {
     }
 
     // Reset currentJobInput after saving, with a new unique id
-    setCurrentJobInput({
-      companyName: "",
-      positionTitle: "",
-      startDateJob: "",
-      endDateJob: "",
-      locationJob: "",
-      descriptionJob: "",
-      idJob: null,
-    });
+    setCurrentJobInput(defaultJob);
 
     // Hide form after saving
     setVisibleJobForm(false);
   }
 
   function cancelJobInfo() {
-    setCurrentJobInput({
-      companyName: "",
-      positionTitle: "",
-      startDateJob: "",
-      endDateJob: "",
-      locationJob: "",
-      descriptionJob: "",
-      idJob: crypto.randomUUID(),
-    });
+    setCurrentJobInput(defaultJob);
     setVisibleJobForm(false); // make the form disappear
     setSaveJobFormData(false); // cancel the form on CV prototype
   }
@@ -261,24 +217,9 @@ function Application() {
       setStateStatus("Example is not shown");
       setPersonalInfo({ name: "", phone: "", address: "", email: "" });
 
-      setCurrentEducation({
-        school: "",
-        degree: "",
-        startDate: "",
-        endDate: "",
-        location: "",
-        id: null,
-      });
+      setCurrentEducation(defaultEducation);
 
-      setCurrentJobInput({
-        companyName: "",
-        positionTitle: "",
-        startDateJob: "",
-        endDateJob: "",
-        locationJob: "",
-        descriptionJob: "",
-        idJob: null,
-      });
+      setCurrentJobInput(defaultJob);
 
       if (educationList.length > 0) {
         deleteEducationInfo(educationList.length - 1); // Deletes the last entry = example
@@ -320,7 +261,7 @@ function Application() {
   }
 
   // cv font settings
-  const [cvFont, setCVfont] = useState("serif"); // default font is "Libre Franklin", sans-serif
+  const [cvFont, setCVfont] = useState('"Libre Franklin", sans-serif'); // default font is "Libre Franklin", sans-serif
 
   function changeFontFamily(fontfamily) {
     setCVfont(fontfamily);
@@ -339,13 +280,13 @@ function Application() {
         />
         <PersonalForms
           personalInfo={personalInfo}
-          handleInputChange={handlePersonalInputChange}
+          handleInputChange={handleInputChange(setPersonalInfo)}
           customizeMode={customizeMode}
         />
         <EducationForm
           currentEducation={currentEducation}
           educationList={educationList}
-          handleInputChange={handleEducationInputChange}
+          handleInputChange={handleInputChange(setCurrentEducation)}
           visibleForm={visibleForm}
           makeFormAppear={makeFormAppear}
           saveEducationInfo={saveEducationInfo}
@@ -358,7 +299,7 @@ function Application() {
         <JobForm
           currentJobInput={currentJobInput}
           jobList={jobList}
-          handleJobInputChange={handleJobInputChange}
+          handleJobInputChange={handleInputChange(setCurrentJobInput)}
           visibleJobForm={visibleJobForm}
           makeJobFormAppear={makeJobFormAppear}
           saveJobInfo={saveJobInfo}
