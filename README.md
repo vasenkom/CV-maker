@@ -33,7 +33,3 @@ Check out the live demo [here](https://cv-maker-f6t8emfk5-vasenkoms-projects.ver
 4. Preview the CV in real time as you input your details.
 5. Click on the download button to generate and download your CV in PDF format.
 6. Toggle the switch to view an example of the CV pre-filled with sample data.
-
-## License
-
-This project is licensed under the MIT License.
