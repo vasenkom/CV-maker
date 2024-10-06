@@ -190,9 +190,17 @@ function Application() {
       setEducationList([
         {
           school: "ABC University",
-          degree: "Master degree in Biotechnology",
-          startDate: "09.2023",
+          degree: "Master degree in Biochemistry",
+          startDate: "09.2023", // Adjust start date for Bachelor's degree
           endDate: "06.2025",
+          location: "Prague, Czech Republic",
+          id: crypto.randomUUID(),
+        },
+        {
+          school: "ABC University",
+          degree: "Bachelor degree in Biotechnology",
+          startDate: "09.2020",
+          endDate: "06.2023",
           location: "Prague, Czech Republic",
           id: crypto.randomUUID(),
         },
