@@ -1,5 +1,6 @@
 export function CVprototype({
   personalInfo,
+  skills,
   educationList,
   saveFormData,
   currentEducation,
@@ -64,7 +65,9 @@ export function CVprototype({
                   <p>{currentEducation.location}</p>
                 </div>
                 <div id="column2">
-                  <p>{currentEducation.school}</p>
+                  <p>
+                    <b>{currentEducation.school}</b>
+                  </p>
                   <p>{currentEducation.degree}</p>
                 </div>
               </div>
@@ -83,7 +86,9 @@ export function CVprototype({
                         <p>{edu.location}</p>
                       </div>
                       <div id="column2">
-                        <p>{edu.school}</p>
+                        <p>
+                          <b>{edu.school}</b>
+                        </p>
                         <p>{edu.degree}</p>
                       </div>
                     </div>
@@ -102,7 +107,9 @@ export function CVprototype({
                   <p>{edu.location}</p>
                 </div>
                 <div id="column2">
-                  <p>{edu.school}</p>
+                  <p>
+                    <b>{edu.school}</b>
+                  </p>
                   <p>{edu.degree}</p>
                 </div>
               </div>
@@ -125,7 +132,9 @@ export function CVprototype({
                   <p>{currentJobInput.locationJob}</p>
                 </div>
                 <div id="column2">
-                  <p>{currentJobInput.companyName}</p>
+                  <p>
+                    <b>{currentJobInput.companyName}</b>
+                  </p>
                   <p>{currentJobInput.positionTitle}</p>
                   <p>{currentJobInput.descriptionJob}</p>
                 </div>
@@ -145,7 +154,9 @@ export function CVprototype({
                         <p>{job.locationJob}</p>
                       </div>
                       <div id="column2">
-                        <p>{job.companyName}</p>
+                        <p>
+                          <b>{job.companyName}</b>
+                        </p>
                         <p>{job.positionTitle}</p>
                         <p>{job.descriptionJob}</p>
                       </div>
@@ -165,12 +176,30 @@ export function CVprototype({
                   <p>{job.locationJob}</p>
                 </div>
                 <div id="column2">
-                  <p>{job.companyName}</p>
+                  <p>
+                    <b>{job.companyName}</b>
+                  </p>
                   <p>{job.positionTitle}</p>
                   <p>{job.descriptionJob}</p>
                 </div>
               </div>
             ))}
+        </div>
+
+        <div id="skills">
+          <h3 className="header-text">Skills</h3>
+          <div className="skillsLine">
+            <p>
+              <b>Languages:</b>
+            </p>
+            <p>{skills.languages}</p>
+          </div>
+          <div className="skillsLine">
+            <p>
+              <b>Technical skills:</b>
+            </p>
+            <p>{skills.technicalSkills}</p>
+          </div>
         </div>
       </div>
     </>

@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client";
 import { SettingPart } from "./components/settings/SettingsMain";
 import { PersonalForms } from "./components/forms/PersonalForms";
 import { EducationForm } from "./components/forms/EducationForm";
+import { SkillsForm } from "./components/forms/SkillsForm";
 import { CVprototype } from "./components/CV";
 import { SettingsButtons } from "./components/settings/Buttons";
 import { handleDownloadPDF } from "./components/downloadPDF";
@@ -41,6 +42,12 @@ const defaultJob = {
   idJob: crypto.randomUUID(),
 };
 
+const defaultSkills = {
+  languages: "",
+  technicalSkills: "",
+  id: crypto.randomUUID(),
+};
+
 function Application() {
   // Personal data main point
   const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
@@ -50,6 +57,9 @@ function Application() {
     const { name, value } = e.target;
     setter((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  // Skills data main point
+  const [skills, setSkills] = useState(defaultSkills);
 
   const [educationList, setEducationList] = useState([]); // Array of education objects
 
@@ -219,6 +229,11 @@ function Application() {
         },
       ]);
 
+      setSkills({
+        languages: "English C1, Czech B2",
+        technicalSkills: "MS Office, React, CSS, HTML, JavaScript",
+      });
+
       setVisibleForm(false); // Close the editing form
       setVisibleJobForm(false);
     } else {
@@ -325,6 +340,11 @@ function Application() {
           changeHeadFontColor={changeHeadFontColor}
           changeFontFamily={changeFontFamily}
         />
+        <SkillsForm
+          skills={skills}
+          handleInputChange={handleInputChange(setSkills)}
+          customizeMode={customizeMode}
+        />
       </div>
       <div id="Right">
         <SettingsButtons
@@ -338,6 +358,7 @@ function Application() {
         />
         <CVprototype
           personalInfo={personalInfo}
+          skills={skills}
           educationList={educationList}
           saveFormData={saveFormData}
           currentEducation={currentEducation}
