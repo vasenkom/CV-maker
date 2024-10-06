@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./toggleSwitch.css";
+import "./ToggleSwitch.css";
 
 export function ToggleSwitch({ isChecked, stateMessage, toggleHandler }) {
   return (
