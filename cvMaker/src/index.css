@@ -145,6 +145,7 @@ select {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  margin-bottom: 10px;
 }
 #column1 {
   width: 30%;
