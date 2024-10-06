@@ -256,6 +256,18 @@ select {
   font-size: 18px;
   padding: 5px 7px;
 }
+.skillsLine {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+#skills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 85%;
+  margin: 10px auto; /* Centers the entire #education div horizontally */
+}
 @media only screen and (min-width: 2500px) {
   #Application {
     justify-content: center;
