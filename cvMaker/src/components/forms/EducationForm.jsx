@@ -15,7 +15,7 @@ export function EducationForm({
 }) {
   function renderForm(labelText, name, value) {
     return (
-      <div>
+      <div id="personalForm">
         <label htmlFor={name}>{labelText}:</label>
         <Form name={name} value={value || ""} onChange={handleInputChange} />
       </div>
@@ -61,12 +61,16 @@ export function EducationForm({
               {renderForm("Degree", "degree", currentEducation.degree)}
 
               <div className="dateFormMain">
-                {renderForm(
-                  "Start Date",
-                  "startDate",
-                  currentEducation.startDate
-                )}
-                {renderForm("End Date", "endDate", currentEducation.endDate)}
+                <div className="dateForm">
+                  {renderForm(
+                    "Start Date",
+                    "startDate",
+                    currentEducation.startDate
+                  )}
+                </div>
+                <div className="dateForm">
+                  {renderForm("End Date", "endDate", currentEducation.endDate)}
+                </div>
               </div>
 
               {renderForm("Location", "location", currentEducation.location)}
