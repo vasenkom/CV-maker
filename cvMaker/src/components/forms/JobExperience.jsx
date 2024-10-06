@@ -15,7 +15,7 @@ export function JobForm({
 }) {
   function renderForm(labelText, name, value) {
     return (
-      <div>
+      <div id="personalForm">
         <label htmlFor={name}>{labelText}:</label>
         <Form name={name} value={value || ""} onChange={handleJobEdit} />
       </div>
@@ -68,16 +68,21 @@ export function JobForm({
               )}
 
               <div className="dateFormMain">
-                {renderForm(
-                  "Start Date",
-                  "startDateJob",
-                  currentJobInput.startDateJob
-                )}
-                {renderForm(
-                  "End Date",
-                  "endDateJob",
-                  currentJobInput.endDateJob
-                )}
+                <div className="dateForm">
+                  {renderForm(
+                    "Start Date",
+                    "startDateJob",
+                    currentJobInput.startDateJob
+                  )}
+                </div>
+
+                <div className="dateForm">
+                  {renderForm(
+                    "End Date",
+                    "endDateJob",
+                    currentJobInput.endDateJob
+                  )}
+                </div>
               </div>
 
               {renderForm(
