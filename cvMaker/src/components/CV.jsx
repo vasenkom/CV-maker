@@ -57,13 +57,13 @@ export function CVprototype({
               {/* Show the current education being edited */}
 
               <div className="education-entry">
-                <div id="column">
+                <div id="column1">
                   <p>
                     {currentEducation.startDate} - {currentEducation.endDate}
                   </p>
                   <p>{currentEducation.location}</p>
                 </div>
-                <div id="column">
+                <div id="column2">
                   <p>{currentEducation.school}</p>
                   <p>{currentEducation.degree}</p>
                 </div>
@@ -76,13 +76,13 @@ export function CVprototype({
                   .filter((edu) => !(edu.id === currentEducation.id))
                   .map((edu, index) => (
                     <div key={index} className="education-entry">
-                      <div id="column">
+                      <div id="column1">
                         <p>
                           {edu.startDate} - {edu.endDate}
                         </p>
                         <p>{edu.location}</p>
                       </div>
-                      <div id="column">
+                      <div id="column2">
                         <p>{edu.school}</p>
                         <p>{edu.degree}</p>
                       </div>
@@ -95,13 +95,13 @@ export function CVprototype({
           {!saveFormData &&
             educationList.map((edu, index) => (
               <div key={index} className="education-entry">
-                <div id="column">
+                <div id="column1">
                   <p>
                     {edu.startDate} - {edu.endDate}
                   </p>
                   <p>{edu.location}</p>
                 </div>
-                <div id="column">
+                <div id="column2">
                   <p>{edu.school}</p>
                   <p>{edu.degree}</p>
                 </div>
@@ -117,14 +117,14 @@ export function CVprototype({
             <>
               {/* Show the current education being edited */}
               <div className="education-entry">
-                <div id="column">
+                <div id="column1">
                   <p>
                     {currentJobInput.startDateJob} -{" "}
                     {currentJobInput.endDateJob}
                   </p>
                   <p>{currentJobInput.locationJob}</p>
                 </div>
-                <div id="column">
+                <div id="column2">
                   <p>{currentJobInput.companyName}</p>
                   <p>{currentJobInput.positionTitle}</p>
                   <p>{currentJobInput.descriptionJob}</p>
@@ -138,13 +138,13 @@ export function CVprototype({
                   .filter((job) => !(job.id === currentJobInput.idJob))
                   .map((job, index) => (
                     <div key={index} className="education-entry">
-                      <div id="column">
+                      <div id="column1">
                         <p>
                           {job.startDateJob} - {job.endDateJob}
                         </p>
                         <p>{job.locationJob}</p>
                       </div>
-                      <div id="column">
+                      <div id="column2">
                         <p>{job.companyName}</p>
                         <p>{job.positionTitle}</p>
                         <p>{job.descriptionJob}</p>
@@ -158,13 +158,13 @@ export function CVprototype({
           {!saveJobFormData &&
             jobList.map((job, index) => (
               <div key={index} className="education-entry">
-                <div id="column">
+                <div id="column1">
                   <p>
                     {job.startDateJob} - {job.endDateJob}
                   </p>
                   <p>{job.locationJob}</p>
                 </div>
-                <div id="column">
+                <div id="column2">
                   <p>{job.companyName}</p>
                   <p>{job.positionTitle}</p>
                   <p>{job.descriptionJob}</p>
