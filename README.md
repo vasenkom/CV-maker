@@ -4,7 +4,7 @@ This project is a simple CV maker application built with React, allowing users t
 
 ## Demo
 
-Check out the live demo [here](https://cv-maker-f6t8emfk5-vasenkoms-projects.vercel.app/).
+Check out the live demo [here](https://cv-maker-4b5d7gp4m-vasenkoms-projects.vercel.app/).
 
 
 ## Features
