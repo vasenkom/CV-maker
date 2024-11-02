@@ -48,7 +48,7 @@ const defaultSkills = {
   id: crypto.randomUUID(),
 };
 
-function Application() {
+export function Application() {
   // Personal data main point
   const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
 
